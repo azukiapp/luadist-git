@@ -90,7 +90,7 @@ function install(package_names, deploy_dir, variables)
     -- resolve dependencies
     local dependencies, dep_manifest_or_err = depends.get_depends(package_names, installed, manifest, dep_manifest, deploy_dir, false, false)
     if not dependencies then return nil, dep_manifest_or_err end
-    if #dependencies == 0 then return nil, "No packages to install." end
+    if #dependencies == 0 then return true, "No packages to install." end
 
     -- save updated dependency manifest
     local ok, err = sys.make_dir(sys.parent_dir(dep_manifest_file))
